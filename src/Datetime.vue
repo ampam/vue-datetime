@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { DateTime,Settings } from 'luxon'
+import { DateTime, Settings } from 'luxon'
 import DatetimePopup from './DatetimePopup'
 import { datetimeFromISO, startOfDay, weekStart } from './util'
 
@@ -146,7 +146,7 @@ export default {
     locale: {
       type: String,
       default: null
-    },
+    }
   },
 
   data () {
@@ -167,9 +167,9 @@ export default {
   },
 
   computed: {
-    datetimeLocale() {
+    datetimeLocale () {
       const result = this.locale || Settings.defaultLocale
-      return result;
+      return result
     },
     inputValue () {
       let format = this.format
@@ -190,25 +190,25 @@ export default {
       }
 
       if (typeof format === 'string') {
-        return this.datetime ? DateTime.fromISO(this.datetime).setZone(this.zone).setLocale( this.datetimeLocale ).toFormat(format) : ''
+        return this.datetime ? DateTime.fromISO(this.datetime).setZone(this.zone).setLocale(this.datetimeLocale).toFormat(format) : ''
       } else {
-        return this.datetime ? this.datetime.setZone(this.zone).setLocale( this.datetimeLocale ).toLocaleString(format) : ''
+        return this.datetime ? this.datetime.setZone(this.zone).setLocale(this.datetimeLocale).toLocaleString(format) : ''
       }
     },
     popupDate () {
-      return this.datetime ? this.datetime.setLocale( this.datetimeLocale ).setZone(this.zone) : this.newPopupDatetime()
+      return this.datetime ? this.datetime.setLocale(this.datetimeLocale).setZone(this.zone) : this.newPopupDatetime()
     },
     popupMinDatetime () {
-      return this.minDatetime ? DateTime.fromISO(this.minDatetime).setLocale( this.datetimeLocale ).setZone(this.zone) : null
+      return this.minDatetime ? DateTime.fromISO(this.minDatetime).setLocale(this.datetimeLocale).setZone(this.zone) : null
     },
     popupMaxDatetime () {
-      return this.maxDatetime ? DateTime.fromISO(this.maxDatetime).setLocale( this.datetimeLocale ).setZone(this.zone) : null
+      return this.maxDatetime ? DateTime.fromISO(this.maxDatetime).setLocale(this.datetimeLocale).setZone(this.zone) : null
     }
   },
 
   methods: {
     emitInput () {
-      let datetime = this.datetime ? this.datetime.setLocale( this.datetimeLocale ).setZone(this.valueZone) : null
+      let datetime = this.datetime ? this.datetime.setLocale(this.datetimeLocale).setZone(this.valueZone) : null
 
       if (datetime && this.type === 'date') {
         datetime = startOfDay(datetime)
